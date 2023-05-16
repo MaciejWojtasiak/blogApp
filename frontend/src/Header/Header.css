@@ -27,6 +27,9 @@
     border: none;
 }
 
+.header-logo {
+    color: azure;
+}
 
 .header-avatar{
     width: 30px;
