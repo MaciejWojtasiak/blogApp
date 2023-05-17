@@ -25,11 +25,13 @@ function App() {
   <Router>
     <div className='App'>      
       <Header />   
+      <main className='main'>     
       <Routes>      
         <Route path='/' element={<PostList posts={data}/>}/>
         <Route path='/:userID/createPost' element={<CreatePost />}/>
         <Route path='/:userID' element={<UserPage />}/>
       </Routes>
+      </main>
     </div> 
   </Router>
   )

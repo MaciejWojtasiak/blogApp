@@ -1,6 +1,16 @@
+.App {
+    background-color: #000;
+    min-height: 100vh;
+}
+
 .link {
     text-decoration: none;
 }
 .center {
     text-align: center;
+}
+
+.main {
+    max-width: 960px;
+    margin: 0 auto;
 }
