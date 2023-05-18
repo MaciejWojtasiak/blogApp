@@ -1,7 +1,7 @@
 
 import React from 'react'
 import './AuthorAvatar.css'
-import UserImage from './UserImage'
+import UserImage from '../UserImage/UserImage'
 
 function AuthorAvatar({imageURL, userID}) {
   return (

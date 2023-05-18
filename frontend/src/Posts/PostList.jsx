@@ -1,11 +1,12 @@
 import React from 'react'
 import Post from './Post'
 import "./PostList.css"
+import Loader from '../shared/Loader/Loader'
 
 function PostList({posts}) {
     if(posts.length === 0) {
         return (<div className='center'>
-            No data yet...
+            <Loader />
         </div>)
     }    
     return (

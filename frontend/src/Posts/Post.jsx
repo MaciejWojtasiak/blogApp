@@ -1,7 +1,7 @@
 import React from 'react'
 import './Post.css'
 import {Link} from 'react-router-dom'
-import AuthorAvatar from '../shared/AuthorAvatar'
+import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar'
 
 function Post({id,authorID, title,body, reactions, tags, imgURL}) {
   return (

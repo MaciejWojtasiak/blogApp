@@ -1,6 +1,6 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
-import UserImage from '../shared/UserImage'
+import UserImage from '../UserImage/UserImage'
 import { useEffect, useState } from 'react'
 
 const DUMMY_USER = {
@@ -11,7 +11,7 @@ const DUMMY_USER = {
 }
 
 function Header() {
-  const [user, setUser] = useState(false)
+  const [user, setUser] = useState(DUMMY_USER)
 
    return (
     <header className='header'>

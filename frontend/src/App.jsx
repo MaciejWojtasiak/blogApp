@@ -1,12 +1,13 @@
 import { useEffect , useState} from 'react';
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 import './App.css'
-import Header from './Header/Header';
-import CreatePost from './pages/CreatePost';
+import Header from './shared/Header/Header';
+import CreatePost from './pages/CreatePost/CreatePost';
 import PostList from './Posts/PostList';
-import UserPage from './pages/UserPage';
-import Register from './pages/Register';
-import Login from './pages/Login';
+import UserPage from './pages/UserPage/UserPage';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
+
 
 function App() { 
   const [data, setData] = useState([]);
