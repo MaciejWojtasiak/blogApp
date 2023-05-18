@@ -11,7 +11,19 @@
     text-align: center;
 }
 
-.main {
-    max-width: 960px;
-    margin: 0 auto;
+.btn {
+    padding: .5rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-primary{
+    color: var(--primary-white);
+    background-color: var(--primary-blue);
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-blue);
 }

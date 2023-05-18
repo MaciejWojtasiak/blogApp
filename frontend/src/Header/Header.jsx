@@ -1,8 +1,19 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
 import UserImage from '../shared/UserImage'
+import { useEffect, useState } from 'react'
+
+const DUMMY_USER = {
+  id:'u1',
+  username:'user1',
+  password:'password',
+  imageURL:'https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg'
+}
+
 function Header() {
-  return (
+  const [user, setUser] = useState(false)
+
+   return (
     <header className='header'>
         <div className="header-left">
           <Link className='link' to={'/'}>
@@ -13,10 +24,20 @@ function Header() {
           </div>          
         </div>
         <div className="header-right">
-            <Link to={'/:userID/createPost'} className='header-button post-btn link'>Create post</Link>
+          {user && <>
+            <Link to={`/${user.id}/createPost`} className='header-button btn btn-primary link'>Create post</Link>
             <div className="header-avatar">
-              <UserImage userID={1} imageURL={'https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg'}/>
+              <UserImage userID={user.id} imageURL={user.imageURL}/>
             </div>
+          </>}
+
+          {!user && 
+            <div className='header-links'>
+              <Link className='link' to={'/login'}>Login</Link>
+              <Link className='link' to={'/register'}>Register</Link>
+            </div>
+          }
+            
         </div>
     </header>
   )
