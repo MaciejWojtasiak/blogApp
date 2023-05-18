@@ -1,24 +1,19 @@
 import React from 'react'
 import './Post.css'
 import {Link} from 'react-router-dom'
+import AuthorAvatar from '../shared/AuthorAvatar'
 
 function Post({id,authorID, title,body, reactions, tags, imgURL}) {
   return (
     <div className='post' id={id}>
         {imgURL && <div className="post-image">
             <img src={imgURL} alt='image-item' />
-        </div>}        
-        <div className="post-author">
-            <div className="author-avatar">
-                <img src="https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg" alt="author-avatar" />
-            </div>
-            <div className="author-username">
-                Nickname
-            </div>
-        </div>  
-        <Link className='link' to = {`posts/${id}`}>
-            <div className="post-details">           
-                <h2>{title}</h2>               
+        </div>}      
+        <AuthorAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username='Andrew Tate'/>   
+            <div className="post-details"> 
+                <Link className='link' to = {`posts/${id}`}>              
+                    <h2 className='post-title'>{title}</h2>          
+                </Link>     
                 {tags && <div className="post-tags">
                     {tags.map((tag,index)=>{
                         return <span key={index} className='tag'>#{tag}</span>
@@ -35,7 +30,7 @@ function Post({id,authorID, title,body, reactions, tags, imgURL}) {
                     </div>
                 </div>            
             </div>
-        </Link>
+        
     </div>
   )
 }

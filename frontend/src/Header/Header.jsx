@@ -1,6 +1,6 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
-
+import UserImage from '../shared/UserImage'
 function Header() {
   return (
     <header className='header'>
@@ -15,9 +15,7 @@ function Header() {
         <div className="header-right">
             <Link to={'/:userID/createPost'} className='header-button post-btn link'>Create post</Link>
             <div className="header-avatar">
-              <Link to={'/:userID'}>
-                <img className='avatar' src="https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg" alt="profilePhoto" />
-              </Link>
+              <UserImage userID={1} imageURL={'https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg'}/>
             </div>
         </div>
     </header>

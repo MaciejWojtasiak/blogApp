@@ -1,10 +1,11 @@
 .App {
-    background-color: #000;
+    background-color: var(--primary-white);
     min-height: 100vh;
 }
 
 .link {
     text-decoration: none;
+    color: currentColor;
 }
 .center {
     text-align: center;

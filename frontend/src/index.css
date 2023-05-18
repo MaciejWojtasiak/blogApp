@@ -1,3 +1,12 @@
+:root{
+  --primary-black:#030302;
+  --primary-white:#fdfdfc;
+  --primary-blue:#5772a2;
+  --secondary-white:#fff;
+  --secondary-blue:#344360;
+  --primary-gray:rgba(225, 225, 225, 0.2);
+}
+
 * {
   font-family: "Roboto", sans-serif;
   margin: 0;
