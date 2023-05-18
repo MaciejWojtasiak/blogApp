@@ -5,7 +5,7 @@ import Loader from '../shared/Loader/Loader'
 
 function PostList({posts}) {
     if(posts.length === 0) {
-        return (<div className='center'>
+        return (<div className='posts-loader center'>
             <Loader />
         </div>)
     }    

@@ -1,0 +1,10 @@
+.sidebar {
+    background-color: var(--primary-gray);
+    flex: 1;
+    text-align: center;
+    height: calc(100vh - 4rem);
+}
+
+.sidebar-title, .sidebar-list{
+    margin-top: 1rem;
+}
