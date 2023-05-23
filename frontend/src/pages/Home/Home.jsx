@@ -1,8 +1,8 @@
-import { useState, useEffect} from 'react'
-import PostList from '../../Posts/PostList'
-import Sidebar from '../../shared/Sidebar/Sidebar'
-import Rightbar from '../../shared/Rightbar/Rightbar'
-import "./Home.css"
+import { useState, useEffect} from 'react';
+import PostList from '../../Posts/PostList';
+import Sidebar from '../../shared/Sidebar/Sidebar';
+import Rightbar from'../../shared/Rightbar/Rightbar';
+import "./Home.css";
 
 
 function Home() {
@@ -10,9 +10,9 @@ function Home() {
 
   useEffect(()=>{
     const fetchData = async () => {
-      const response = await fetch('https://dummyjson.com/posts')
+      const response = await fetch('https://dummyjson.com/posts');
       const fetchedData = await response.json();    
-      setData(fetchedData.posts)
+      setData(fetchedData.posts);
     }
     fetchData();
   },[])

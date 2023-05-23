@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background-image: url('../assets/pattern.jpg');
+    background-image: url('../../assets/pattern.jpg');
     background-size: cover;
     backdrop-filter: blur(100px);
  }

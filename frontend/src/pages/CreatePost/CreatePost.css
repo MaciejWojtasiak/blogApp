@@ -1,0 +1,14 @@
+.createPost{
+    position: absolute;
+    height: calc(100vh - 4rem);
+    width: 100%;
+}
+.post-form {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 6rem;
+}
+
+.file-input{
+    cursor: pointer;
+}

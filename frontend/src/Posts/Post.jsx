@@ -29,8 +29,7 @@ function Post({id,authorID, title,body, reactions, tags, imgURL}) {
                         <span className='post-span'>Add comment</span>
                     </div>
                 </div>            
-            </div>
-        
+            </div>        
     </div>
   )
 }
