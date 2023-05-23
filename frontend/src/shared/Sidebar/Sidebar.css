@@ -8,3 +8,16 @@
 .sidebar-title, .sidebar-list{
     margin-top: 1rem;
 }
+.sidebar-list{ 
+    list-style: none;
+}
+
+.list-item {
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: .5rem;
+    transition: color .2s;
+}
+.list-item:hover {
+    color: var(--primary-blue);
+}
