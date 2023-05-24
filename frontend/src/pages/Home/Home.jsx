@@ -1,7 +1,6 @@
 import { useState, useEffect} from 'react';
 import PostList from '../../Posts/PostList';
 import Sidebar from '../../shared/Sidebar/Sidebar';
-import Rightbar from'../../shared/Rightbar/Rightbar';
 import "./Home.css";
 
 
@@ -18,9 +17,8 @@ function Home() {
   },[])
   return (
     <div className='home'>
-      <Sidebar />
       <PostList posts={data}/>
-      <Rightbar />
+      <Sidebar />         
     </div>
   )
 }

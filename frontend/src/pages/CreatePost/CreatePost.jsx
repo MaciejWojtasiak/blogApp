@@ -6,7 +6,10 @@ const handleSubmit = (e) => {
   e.preventDefault();
 }
 
+const categories = ["music", 'sport', 'technology', 'science', 'movie', 'politics'];
+
 function CreatePost() {
+  
   return (
     <div className='createPost'>
       <form className='post-form' onSubmit={handleSubmit}>
@@ -18,6 +21,12 @@ function CreatePost() {
           <textarea className='form-input'  id='desc' name='desc' placeholder='Description...'/>
           <label htmlFor="tags">Tags</label>
           <textarea className='form-input' id='tags' name='tags' placeholder='Tags...'/>
+          <label htmlFor="category">Category</label>
+          <select name="category" id="category">
+            {categories && categories.map((category, index)=>{
+                return <option key={index} value={category}>{category.toUpperCase()}</option>
+              })}
+          </select>
           <label htmlFor="file-input" className='file-input'>Image:<br/><i className="fa-solid fa-plus"></i></label>
           <input type="file" id="file-input" style={{display:"none"}}/>
           <input type="submit" className='btn btn-primary' value="Submit" />

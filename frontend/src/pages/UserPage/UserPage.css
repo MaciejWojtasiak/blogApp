@@ -1,0 +1,9 @@
+.user-page{
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: center;
+}
+
+.user-page__title {
+    margin-top: 1rem;
+}
