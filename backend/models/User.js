@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-    _id: Schema.Types.UUID,
     username: {
         type: String,
         required: true,
@@ -19,10 +18,11 @@ const UserSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
+        required: false,
         default: ""
     }
 },
     { timestamps: true }
 );
 
-module.exports = mongoose.model("User");
+module.exports = mongoose.model("User", UserSchema);
