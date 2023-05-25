@@ -1,5 +1,11 @@
-// const router = require('express').Router();
+const router = require('express').Router();
 
-// router.get('/', async (req, res) => {
-//     let posts = await db.
-// })
+router.get('/', async (req, res) => {
+    try {
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+module.exports = router;
