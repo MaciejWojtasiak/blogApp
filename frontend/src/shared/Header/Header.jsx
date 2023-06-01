@@ -11,7 +11,7 @@ const DUMMY_USER = {
 }
 
 function Header() {
-  const [user, setUser] = useState(DUMMY_USER)
+  const [user, setUser] = useState(false)
 
    return (
     <header className='header'>
