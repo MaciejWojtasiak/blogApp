@@ -9,21 +9,23 @@ import SinglePost from './pages/SinglePost/SinglePost';
 import Login from './pages/Login/Login';
 
 
+
+
 function App() {   
-  return (
-  <Router>
-    <div className='App'>      
-      <Header />   
-      <Routes>      
-        <Route path='/' element={<Home />}/>
-        <Route path='/:userID/createPost' element={<CreatePost />}/>
-        <Route path='/:userID' element={<UserPage />}/>
-        <Route path='/posts/:postID' element={<SinglePost />} />
-        <Route path='/login' element={<Login />}/>
-        <Route path='/register' element={<Register />}/>
-      </Routes>
-    </div> 
-  </Router>
+  return (  
+      <Router>
+        <div className='App'>      
+          <Header />   
+          <Routes>      
+            <Route path='/' element={<Home />}/>
+            <Route path='/:userID/createPost' element={<CreatePost />}/>
+            <Route path='/:userID' element={<UserPage />}/>
+            <Route path='/posts/:postID' element={<SinglePost />} />
+            <Route path='/login' element={<Login />}/>
+            <Route path='/register' element={<Register />}/>
+          </Routes>
+        </div> 
+      </Router>
   )
 }
 

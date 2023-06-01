@@ -1,48 +1,45 @@
-import {React, useState, useEffect} from 'react';
+import {React, useRef, useState, useContext} from 'react';
 import axios from "axios";
-import "./Login.css"
+import "./Login.css";
+import { Context } from '../../context/Context';
 
 
 function Login() {
-  const [formData, setFormData] = useState({
-    username:'',
-    password:''
-  })
-  const [message, setMessage] = useState('')
-
-  const handleChange = (e) => {
-    setFormData(prevVal => ({
-      ...prevVal,
-      [e.target.name]:e.target.value
-    }))
-  }
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+  const {user,isFetching, dispatch} = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch({type:"LOGIN_START"})
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', {
-        username: formData.username,
-        password: formData.password
-      });      
+        username: usernameRef.current.value,
+        password: passwordRef.current.value
+      });  
+      dispatch({type:"LOGIN_SUCCESS", payload:res.data})
     } catch (err) {
-      console.log(err)
+      dispatch({type:"LOGIN_ERROR"})
     }
   }
+
+  console.log(user)
 
 
   return (
     <div className='login-page'>     
+   
         <h1>Login</h1>
-        <form className='login-form' action="#" onSubmit={handleSubmit}>
+        <form className='login-form'  onSubmit={handleSubmit}>
             <div className="form-div">
               <label htmlFor="username">Username</label>
-              <input onChange={handleChange} className='form-input' name='username' id='username' type="text" placeholder='Username' value={formData.username}/>
+              <input ref={usernameRef} className='form-input' name='username' id='username' type="text" placeholder='Username' />
               <label htmlFor="password">Password</label>             
-              <input onChange={handleChange} className='form-input' name='password' id='password' type="password" placeholder='Password' value={formData.password}/>
+              <input ref={passwordRef} className='form-input' name='password' id='password' type="password" placeholder='Password' />
               <input className='btn btn-primary' type="submit" placeholder='login'/>
             </div>
         </form>
-        {message && <div>{message}</div>}
+        
     </div>
   )
 }

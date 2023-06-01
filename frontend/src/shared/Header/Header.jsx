@@ -1,17 +1,13 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
 import UserImage from '../UserImage/UserImage'
-import { useEffect, useState } from 'react'
-
-const DUMMY_USER = {
-  id:'u1',
-  username:'user1',
-  password:'password',
-  imageURL:'https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg'
-}
+import { useContext} from 'react'
+import { Context } from '../../context/Context'
 
 function Header() {
-  const [user, setUser] = useState(false)
+
+  const {user} = useContext(Context);
+  
 
    return (
     <header className='header'>
