@@ -2,23 +2,22 @@ import {React, useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../../shared/Loader/Loader';
 import AuthorAvatar from '../../shared/AuthorAvatar/AuthorAvatar';
-import './SinglePost.css'
+import './SinglePost.css';
+import axios from 'axios';
 
 function SinglePost() {
 
-    const [post, setPost] = useState(false)
+    const [post, setPost] = useState(false);
     const params = useParams();
     const postID = params.postID;
 
     useEffect(()=>{
-        const fetchPost = async () => {
-            const response = await fetch(`https://dummyjson.com/posts/${postID}`)
-            const data = await response.json();
-            setPost(data);
-            console.log(data)
+        const getPost = async () => {
+            const res = await axios.get(`http://localhost:5000/api/posts/${postID}`);
+            setPost(res.data);
         }
-        fetchPost()
-    },[])
+        getPost();
+    },[]);
 
 
     
@@ -26,17 +25,14 @@ function SinglePost() {
     <div className='single-post'>
         {!post && <Loader />}
         {post && 
-            <div className='post' id={postID}>
-            {post.imgURL && <div className="post-image">
-                <img src={post.imgURL} alt='image-item' />
-            </div>}      
-            {!post.imgURL && <div className="post-image">
-                <img src='https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg' alt='image-item' />
-            </div>} 
-            <AuthorAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username='Andrew Tate'/>   
+            <div className='post' id={post._id}>
+            {post.image && <div className="post-image">
+                <img src={post.image} alt='image-item' />
+            </div>}     
+            <AuthorAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username={post.username}/>   
                 <div className="post-details">                            
                         <h2 className='post-title'>{post.title}</h2>
-                        <p className='post-description'>{post.body}</p>         
+                        <p className='post-description'>{post.description}</p>         
                     <div className="post-actions">
                         <div className="post-likes">
                         <i className="post-icon like-icon fa-regular fa-heart"></i>
