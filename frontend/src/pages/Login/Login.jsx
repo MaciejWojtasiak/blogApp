@@ -18,14 +18,13 @@ function Login() {
         password: passwordRef.current.value
       });  
       dispatch({type:"LOGIN_SUCCESS", payload:res.data})
+      res && window.location.replace('/');
     } catch (err) {
       dispatch({type:"LOGIN_ERROR"})
     }
   }
 
-  console.log(user)
-
-
+ 
   return (
     <div className='login-page'>     
    

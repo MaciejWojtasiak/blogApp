@@ -6,9 +6,9 @@ import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar'
 function Post({id, data}) {
   return (
     <div className='post' id={id}>
-        {data.imgURL && <div className="post-image">
-            <img src={data.imgURL} alt='image-item' />
-        </div>}      
+        <div className="post-image">
+            <img src={data.imgURL || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
+        </div>    
         <AuthorAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username='Andrew Tate'/>   
             <div className="post-details"> 
                 <Link className='link' to = {`posts/${data.id}`}>              

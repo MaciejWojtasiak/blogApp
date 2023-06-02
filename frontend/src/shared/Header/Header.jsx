@@ -6,8 +6,7 @@ import { Context } from '../../context/Context'
 
 function Header() {
 
-  const {user} = useContext(Context);
-  
+  const {user} = useContext(Context); 
 
    return (
     <header className='header'>
@@ -21,9 +20,9 @@ function Header() {
         </div>
         <div className="header-right">
           {user && <>
-            <Link to={`/${user.id}/createPost`} className='header-button btn btn-primary link'>Create post</Link>
+            <Link to={`/${user._id}/createPost`} className='header-button btn btn-primary link'>Create post</Link>
             <div className="header-avatar">
-              <UserImage userID={user.id} imageURL={user.imageURL}/>
+              <UserImage userID={user._id} imageURL={user.imageURL}/>
             </div>
           </>}
 
