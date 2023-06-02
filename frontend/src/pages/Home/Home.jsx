@@ -2,22 +2,22 @@ import { useState, useEffect} from 'react';
 import PostList from '../../Posts/PostList';
 import Sidebar from '../../shared/Sidebar/Sidebar';
 import "./Home.css";
+import axios from 'axios';
 
 
 function Home() {
-  const [data, setData] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(()=>{
-    const fetchData = async () => {
-      const response = await fetch('https://dummyjson.com/posts');
-      const fetchedData = await response.json();    
-      setData(fetchedData.posts);
+    const getPosts = async () => {
+      const res = await axios.get('http://localhost:5000/api/posts');
+      setPosts(res.data);
     }
-    fetchData();
+    getPosts();    
   },[])
   return (
     <div className='home'>
-      <PostList posts={data}/>
+      <PostList posts={posts}/>
       <Sidebar />         
     </div>
   )

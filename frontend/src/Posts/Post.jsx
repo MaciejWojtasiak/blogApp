@@ -3,15 +3,15 @@ import './Post.css'
 import {Link} from 'react-router-dom'
 import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar'
 
-function Post({id, data}) {
+function Post({data}) {
   return (
-    <div className='post' id={id}>
+    <div className='post' id={data._id}>
         <div className="post-image">
-            <img src={data.imgURL || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
+            <img src={data.image || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
         </div>    
-        <AuthorAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username='Andrew Tate'/>   
+        <AuthorAvatar username={data.username}/>   
             <div className="post-details"> 
-                <Link className='link' to = {`posts/${data.id}`}>              
+                <Link className='link' to = {`posts/${data._id}`}>              
                     <h2 className='post-title'>{data.title}</h2>          
                 </Link>    
                 <div className="post-actions">
