@@ -36,12 +36,7 @@ function SinglePost() {
             <AuthorAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username='Andrew Tate'/>   
                 <div className="post-details">                            
                         <h2 className='post-title'>{post.title}</h2>
-                        <p className='post-description'>{post.body}</p>          
-                    {post.tags && <div className="post-tags">
-                        {post.tags.map((tag,index)=>{
-                            return <span key={index} className='tag'>#{tag}</span>
-                        })}
-                        </div>}
+                        <p className='post-description'>{post.body}</p>         
                     <div className="post-actions">
                         <div className="post-likes">
                         <i className="post-icon like-icon fa-regular fa-heart"></i>

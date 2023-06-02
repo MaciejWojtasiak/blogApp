@@ -13,12 +13,7 @@ function Post({id, data}) {
             <div className="post-details"> 
                 <Link className='link' to = {`posts/${data.id}`}>              
                     <h2 className='post-title'>{data.title}</h2>          
-                </Link>     
-                {data.tags && <div className="post-tags">
-                    {data.tags.map((tag,index)=>{
-                        return <span key={index} className='tag'>#{tag}</span>
-                    })}
-                    </div>}
+                </Link>    
                 <div className="post-actions">
                     <div className="post-likes">
                     <i className="post-icon like-icon fa-regular fa-heart"></i>

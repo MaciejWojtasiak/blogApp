@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 
 // GET ALL USERS
@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
 // GET ONE USER
 router.get('/:id', async (req, res) => {
     try {

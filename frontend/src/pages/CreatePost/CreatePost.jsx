@@ -1,14 +1,36 @@
-import React from 'react'
-import './CreatePost.css'
+import {React, useRef, useContext} from 'react';
+import axios from 'axios';
+import './CreatePost.css';
+import {Context} from '../../context/Context';
 
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-}
 
 const categories = ["music", 'sport', 'technology', 'science', 'movie', 'politics'];
 
 function CreatePost() {
+
+  const {user} = useContext(Context);
+  
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const categoryRef = useRef();
+  const imageRef = useRef();
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const res = await axios.post('http://localhost:5000/api/posts/', {
+          title: titleRef.current.value,
+          description: descriptionRef.current.value,
+          username: user.username,
+          category: categoryRef.current.value,
+          image: imageRef.current.value
+    });
+ 
+    res.data && window.location.replace('/');
+
+  }
   
   return (
     <div className='createPost'>
@@ -16,19 +38,17 @@ function CreatePost() {
         <div className="form-div">
           <h2>Create post</h2>
           <label htmlFor="title">Title</label>
-          <input className='form-input' type="text" id='title' name='title' placeholder='Title...'/>
+          <input ref={titleRef} className='form-input' type="text" id='title' name='title' placeholder='Title...'/>
           <label htmlFor="desc">Description</label>
-          <textarea className='form-input'  id='desc' name='desc' placeholder='Description...'/>
-          <label htmlFor="tags">Tags</label>
-          <textarea className='form-input' id='tags' name='tags' placeholder='Tags...'/>
+          <textarea ref={descriptionRef} className='form-input'  id='desc' name='desc' placeholder='Description...'/>
           <label htmlFor="category">Category</label>
-          <select name="category" id="category">
+          <select ref={categoryRef} name="category" id="category">
             {categories && categories.map((category, index)=>{
                 return <option key={index} value={category}>{category.toUpperCase()}</option>
               })}
           </select>
-          <label htmlFor="file-input" className='file-input'>Image:<br/><i className="fa-solid fa-plus"></i></label>
-          <input type="file" id="file-input" style={{display:"none"}}/>
+          <label htmlFor="image-input">Image URL</label>
+          <input ref={imageRef} className='form-input' type="text" id='image-input' name='image-input'/> 
           <input type="submit" className='btn btn-primary' value="Submit" />
         </div>
       </form>
