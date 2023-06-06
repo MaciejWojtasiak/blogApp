@@ -31,3 +31,9 @@
     align-self: center;
     margin-top: .8rem;
 }
+
+.error-message{
+    color: crimson;
+    width: 100%;
+    text-align: center;
+}

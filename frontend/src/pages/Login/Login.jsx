@@ -7,19 +7,26 @@ import { Context } from '../../context/Context';
 function Login() {
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const {user,isFetching, dispatch} = useContext(Context);
+  const {isFetching, dispatch} = useContext(Context);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
+    setError('');
     e.preventDefault();
     dispatch({type:"LOGIN_START"})
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', {
         username: usernameRef.current.value,
         password: passwordRef.current.value
-      });  
-      dispatch({type:"LOGIN_SUCCESS", payload:res.data})
-      res && window.location.replace('/');
+      });    
+      
+      if(res) {
+        location.replace('/');
+        dispatch({type:"LOGIN_SUCCESS", payload:res.data})
+      }     
+   
     } catch (err) {
+      setError(err.response.data.error);
       dispatch({type:"LOGIN_ERROR"})
     }
   }
@@ -36,6 +43,7 @@ function Login() {
               <label htmlFor="password">Password</label>             
               <input ref={passwordRef} className='form-input' name='password' id='password' type="password" placeholder='Password' />
               <input className='btn btn-primary' type="submit" placeholder='login'/>
+              {error && <div className='error-message'>{error}</div>}
             </div>
         </form>
         
