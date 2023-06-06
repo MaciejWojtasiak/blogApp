@@ -65,3 +65,7 @@
 .header-links .link:hover{
     color: var(--primary-blue);
 }
+
+.logout{
+    cursor: pointer;
+}

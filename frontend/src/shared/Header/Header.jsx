@@ -6,7 +6,11 @@ import { Context } from '../../context/Context'
 
 function Header() {
 
-  const {user} = useContext(Context); 
+  const {user, dispatch} = useContext(Context); 
+  const logout = () => {
+    dispatch({type:"LOGOUT"});
+    window.location.reload();
+  }
 
    return (
     <header className='header'>
@@ -24,6 +28,7 @@ function Header() {
             <div className="header-avatar">
               <UserImage userID={user._id} imageURL={user.imageURL}/>
             </div>
+            <div className="logout" onClick={logout}>Logout</div>
           </>}
 
           {!user && 
