@@ -14,20 +14,23 @@ function UpdateForm({post, close}) {
   const descriptionRef = useRef();
   const categoryRef = useRef();
   const imageRef = useRef();
-
-  
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const res = await axios.post('http://localhost:5000/api/posts/', {
-          title: titleRef.current.value,
-          description: descriptionRef.current.value,
-          username: user.username,
-          category: categoryRef.current.value,
-          image: imageRef.current.value
-    });
- 
-    res.data && window.location.replace('/');
+    try {
+        await axios.put(`http://localhost:5000/api/posts/${post._id}`, {
+            username:user.username,
+            title: titleRef.current.value,
+            description: descriptionRef.current.value,       
+            category: categoryRef.current.value,
+            image: imageRef.current.value
+        });
+        window.location.reload();
+
+    } catch (err) {
+        console.log(err)
+    }
 
   }
   

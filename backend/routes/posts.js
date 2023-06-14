@@ -40,10 +40,34 @@ router.post('/', async (req, res) => {
 
         res.status(200).send(post);
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json(err);
     }
 });
 
-// DELETE POST
+// UPDATE POST
+
+router.put('/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (post.username === req.body.username) {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: req.params.id },
+                    {
+                        $set: req.body
+                    },
+                    { new: true }
+                );
+                res.status(200).json(updatedPost);
+
+            } catch (err) {
+                res.status(500).json(err);
+            }
+        }
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
 
 module.exports = router;
