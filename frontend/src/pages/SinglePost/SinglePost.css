@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: .1s;
 }
 
 .post-tags{
@@ -57,4 +58,25 @@
     height: 30px;
     display: none;
     
+}
+
+.edit-btn {
+    position: absolute;
+    top: 6em;
+    right: 2em;
+    padding: .5em 1em;
+    background-color: teal;
+    border-radius: 5px;
+    font-size: .8em;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.edit-btn:hover {
+    background-color: rgb(6, 92, 92);
+}
+
+.blur {
+   filter: blur(5px);
 }

@@ -1,13 +1,18 @@
-import {React, useEffect, useState} from 'react'
+import {React, useEffect, useState, useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../../shared/Loader/Loader';
 import AuthorAvatar from '../../shared/AuthorAvatar/AuthorAvatar';
+import UpdateForm from '../../shared/UpdateForm/UpdateForm';
 import './SinglePost.css';
 import axios from 'axios';
+import { Context } from '../../context/Context';
 
 function SinglePost() {
 
+    const [isUpdating, setIsUpdating] = useState(false);
     const [post, setPost] = useState(false);
+    const {user} = useContext(Context);
+
     const params = useParams();
     const postID = params.postID;
 
@@ -19,13 +24,18 @@ function SinglePost() {
         getPost();
     },[]);
 
-
+    const close = () => {
+        setIsUpdating(false)
+    }
     
+   
   return (
-    <div className='single-post'>
+    <div className='single-post' >
         {!post && <Loader />}
+        {isUpdating && <UpdateForm post={post} close={close}/>}
+        {post.username === user.username  && <div className='edit-btn' onClick={()=> {setIsUpdating(true)}}>Edit post</div>}
         {post && 
-            <div className='post' id={post._id}>
+            <div className={`post  ${isUpdating && 'blur'}`} id={post._id}>
             {post.image && <div className="post-image">
                 <img src={post.image} alt='image-item' />
             </div>}     

@@ -5,6 +5,7 @@
   --secondary-white:#fff;
   --secondary-blue:#344360;
   --primary-gray:rgba(225, 225, 225, 0.2);
+  --secondary-gray:rgba(225, 225, 225, .9);
 }
 
 * {

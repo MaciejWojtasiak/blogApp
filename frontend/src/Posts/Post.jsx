@@ -13,15 +13,18 @@ function Post({data}) {
             <div className="post-details"> 
                 <Link className='link' to = {`posts/${data._id}`}>              
                     <h2 className='post-title'>{data.title}</h2>          
-                </Link>    
+                </Link>                    
                 <div className="post-actions">
                     <div className="post-likes">
                     <i className="post-icon like-icon fa-regular fa-heart"></i>
-                    <span className='like-span'>{data.reactions} Reactions</span>
+                        <span className='like-span'>{data.reactions} Reactions</span>
                     </div>
                     <div className="post-comment">
                         <i className="post-icon comment-icon fa-regular fa-comment"></i>
                         <span className='post-span'>Add comment</span>
+                    </div>
+                    <div className="post-category">
+                        <Link className='link' to={`posts/${data.category}`}>#{data.category}</Link>                        
                     </div>
                 </div>            
             </div>        

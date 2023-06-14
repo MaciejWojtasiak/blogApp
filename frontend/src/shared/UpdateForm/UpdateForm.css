@@ -1,0 +1,25 @@
+.updatePost{
+    position: absolute;
+    width: 50%;
+    top:8rem;
+    background-color: var(--secondary-gray);
+    border-radius: 10px;
+    padding: 2rem;
+    z-index: 9;
+}
+.post-form {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 6rem;
+}
+
+.file-input{
+    cursor: pointer;
+}
+
+.cancel{
+    cursor: pointer;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
