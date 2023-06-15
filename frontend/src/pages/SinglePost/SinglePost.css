@@ -57,15 +57,12 @@
     width: 30px;
     height: 30px;
     display: none;
-    
 }
 
-.edit-btn {
+.edit-btn,  .delete-btn{
     position: absolute;
-    top: 6em;
     right: 2em;
     padding: .5em 1em;
-    background-color: teal;
     border-radius: 5px;
     font-size: .8em;
     color: #fff;
@@ -73,8 +70,22 @@
     transition: .2s;
 }
 
+.edit-btn {
+    top: 6em;
+    background-color: teal;
+}
+
 .edit-btn:hover {
     background-color: rgb(6, 92, 92);
+}
+
+.delete-btn {
+    top: 9em;
+    background-color: tomato;
+}
+
+.delete-btn:hover {
+    background-color: rgb(168, 64, 45);
 }
 
 .blur {

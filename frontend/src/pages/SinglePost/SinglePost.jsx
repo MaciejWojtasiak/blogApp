@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Loader from '../../shared/Loader/Loader';
 import AuthorAvatar from '../../shared/AuthorAvatar/AuthorAvatar';
 import UpdateForm from '../../shared/UpdateForm/UpdateForm';
+import Confirm from '../../shared/Confirm/Confirm';
 import './SinglePost.css';
 import axios from 'axios';
 import { Context } from '../../context/Context';
@@ -10,6 +11,7 @@ import { Context } from '../../context/Context';
 function SinglePost() {
 
     const [isUpdating, setIsUpdating] = useState(false);
+    const [confimationPopUp, setConfimationPopUp] = useState(false);
     const [post, setPost] = useState(false);
     const {user} = useContext(Context);
 
@@ -25,7 +27,19 @@ function SinglePost() {
     },[]);
 
     const close = () => {
-        setIsUpdating(false)
+        setIsUpdating(false);
+        setConfimationPopUp(false);
+    }
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`http://localhost:5000/api/posts/${postID}`, {
+                data: {username:user.username},
+            }); 
+            window.location.replace('/');
+        } catch (err) {
+            console.log(err);
+        }           
     }
     
    
@@ -34,8 +48,10 @@ function SinglePost() {
         {!post && <Loader />}
         {isUpdating && <UpdateForm post={post} close={close}/>}
         {post.username === user.username  && <div className='edit-btn' onClick={()=> {setIsUpdating(true)}}>Edit post</div>}
+        {post.username === user.username  && <div className='delete-btn' onClick={()=> {setConfimationPopUp(true)}}>Delete post</div>}
+        {confimationPopUp && <Confirm handleDelete={handleDelete} close={close}/>}
         {post && 
-            <div className={`post  ${isUpdating && 'blur'}`} id={post._id}>
+            <div className={`post  ${(isUpdating || confimationPopUp) && 'blur'}`} id={post._id}>
             {post.image && <div className="post-image">
                 <img src={post.image} alt='image-item' />
             </div>}     

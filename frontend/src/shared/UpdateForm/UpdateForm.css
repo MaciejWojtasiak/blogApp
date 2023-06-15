@@ -1,6 +1,6 @@
 .updatePost{
     position: absolute;
-    width: 50%;
+    width: 60%;
     top:8rem;
     background-color: var(--secondary-gray);
     border-radius: 10px;
@@ -22,4 +22,10 @@
     position: absolute;
     top: 1em;
     right: 1em;
+}
+
+@media (max-width:480px) {
+    .updatePost {
+        width: 80%;
+    }
 }
