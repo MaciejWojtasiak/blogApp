@@ -7,3 +7,9 @@
 .posts-loader{
     flex: 3;
 }
+
+.no-posts{
+    flex: 3;
+    text-align: center;
+    margin-top: 2em;
+}

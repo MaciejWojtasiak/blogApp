@@ -4,12 +4,16 @@ import "./PostList.css";
 import Loader from '../shared/Loader/Loader';
 
 
-function PostList({posts}) {
+function PostList({posts, isLoading}) {
     
-    if(posts.length === 0) {
+
+    if(isLoading) {
         return (<div className='posts-loader center'>
             <Loader />
         </div>)
+    }
+    if(posts.length === 0) {        
+        return (<div className='no-posts'>No posts yet...</div>)
     }    
     return (
         <div className='post-list'>

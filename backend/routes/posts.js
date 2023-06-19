@@ -24,6 +24,17 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// GET POSTS FROM CATEGORY
+
+router.get('/category/:category', async (req, res) => {
+    try {
+        const posts = await Post.find({ category: req.params.category });
+        res.status(200).json(posts);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
 // ADD POST
 
 router.post('/', async (req, res) => {
