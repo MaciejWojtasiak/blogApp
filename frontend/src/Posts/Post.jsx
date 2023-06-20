@@ -1,4 +1,4 @@
-import {React, useState, useE} from 'react'
+import {React, useState} from 'react'
 import './Post.css'
 import {Link} from 'react-router-dom'
 import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar';
@@ -12,14 +12,15 @@ function Post({data}) {
   const {user} = useContext(Context);
 
   const [likes, setLikes] = useState(data.likes.length);
-  const [liked, setLiked] = useState(data.likes.includes(user._id));
-  
+  const [liked, setLiked] = useState(data.likes.includes(user._id));  
   
   const likePost = async () => {
-    if(!user) return;
+    if(!user) return;             
     await axios.put(`http://localhost:5000/api/posts/${data._id}/like`, {
         userId:user._id
-    });
+    });     
+    setLiked(prevVal => !prevVal);
+    liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);   
   }
   
 
