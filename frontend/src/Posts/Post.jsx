@@ -1,8 +1,7 @@
-import {React, useState} from 'react'
+import { useState, useContext} from 'react'
 import './Post.css'
-import {Link} from 'react-router-dom'
+import {  useNavigate} from 'react-router-dom'
 import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar';
-import { useContext } from 'react';
 import {Context} from '../context/Context';
 import axios from 'axios';
 
@@ -10,6 +9,7 @@ import axios from 'axios';
 
 function Post({data}) {
   const {user} = useContext(Context);
+  const navigate = useNavigate();
 
   const [likes, setLikes] = useState(data.likes.length);
   const [liked, setLiked] = useState(data.likes.includes(user._id));  
@@ -22,6 +22,12 @@ function Post({data}) {
     setLiked(prevVal => !prevVal);
     liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);   
   }
+
+  const visitPost = () => {
+    navigate({
+        pathname:`/posts/${data._id}`
+    })
+  }
   
 
   return (
@@ -30,10 +36,8 @@ function Post({data}) {
             <img src={data.image || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
         </div>    
         <AuthorAvatar username={data.username}/>   
-            <div className="post-details"> 
-                <Link className='link' to = {`posts/${data._id}`}>              
-                    <h2 className='post-title'>{data.title}</h2>          
-                </Link>                    
+            <div className="post-details">               
+                    <h2 className='post-title' onClick={visitPost}>{data.title}</h2>         
                 <div className="post-actions">
                     <div className="post-likes">
                     <i className={`post-icon like-icon ${liked ? 'fa-solid' : 'fa-regular'} fa-heart `} onClick={likePost}></i>

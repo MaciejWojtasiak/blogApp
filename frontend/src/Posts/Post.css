@@ -47,7 +47,7 @@
     display: none;   
 }
 
-.like-icon{
+.like-icon, .post-title{
     cursor: pointer;
 }
 
