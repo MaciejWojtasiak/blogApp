@@ -13,7 +13,7 @@ function SinglePost() {
     const [isUpdating, setIsUpdating] = useState(false);
     const [confimationPopUp, setConfimationPopUp] = useState(false);
     const [post, setPost] = useState(false);
-    const {user} = useContext(Context);
+    const {user} = useContext(Context);    
 
     const params = useParams();
     const postID = params.postID;
@@ -62,7 +62,7 @@ function SinglePost() {
                     <div className="post-actions">
                         <div className="post-likes">
                         <i className="post-icon like-icon fa-regular fa-heart"></i>
-                        <span className='like-span'>{post.reactions} Reactions</span>
+                        <span className='like-span'>{post.likes.length} Reactions</span>
                         </div>
                         <div className="post-comment">
                             <i className="post-icon comment-icon fa-regular fa-comment"></i>
