@@ -10,10 +10,12 @@ import { Context } from '../../context/Context';
 
 function SinglePost() {
 
+    const {user} = useContext(Context);    
     const [isUpdating, setIsUpdating] = useState(false);
     const [confimationPopUp, setConfimationPopUp] = useState(false);
-    const [post, setPost] = useState(false);
-    const {user} = useContext(Context);    
+    const [post, setPost] = useState(false);    
+    const [likes, setLikes] = useState(0);
+    const [liked, setLiked] = useState(false); 
 
     const params = useParams();
     const postID = params.postID;
@@ -22,9 +24,20 @@ function SinglePost() {
         const getPost = async () => {
             const res = await axios.get(`http://localhost:5000/api/posts/${postID}`);
             setPost(res.data);
+            setLikes(res.data.likes.length);
+            setLiked(res.data.likes.includes(user._id));
         }
-        getPost();
+        getPost();       
     },[]);
+
+    const likePost = async () => {
+        if(!user) return;             
+        await axios.put(`http://localhost:5000/api/posts/${postID}/like`, {
+            userId:user._id
+        });     
+        setLiked(prevVal => !prevVal);
+        liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);   
+      }
 
     const close = () => {
         setIsUpdating(false);
@@ -61,8 +74,8 @@ function SinglePost() {
                         <p className='post-description'>{post.description}</p>         
                     <div className="post-actions">
                         <div className="post-likes">
-                        <i className="post-icon like-icon fa-regular fa-heart"></i>
-                        <span className='like-span'>{post.likes.length} Reactions</span>
+                        <i className={`post-icon like-icon ${liked ? 'fa-solid' : 'fa-regular'}  fa-heart`} onClick={likePost}></i>
+                        <span className='like-span'>{likes} Reactions</span>
                         </div>
                         <div className="post-comment">
                             <i className="post-icon comment-icon fa-regular fa-comment"></i>

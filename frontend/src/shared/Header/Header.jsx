@@ -1,25 +1,27 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
 import UserImage from '../UserImage/UserImage'
-import { useContext} from 'react'
-import { Context } from '../../context/Context'
+import { useContext, useState} from 'react'
+import { Context } from '../../context/Context';
+
 
 function Header() {
 
   const {user, dispatch} = useContext(Context); 
+  const [search, setSearch] = useState('');
   const logout = () => {
     dispatch({type:"LOGOUT"});
     window.location.reload();
   }
 
-   return (
+    return (
     <header className='header'>
         <div className="header-left">
           <Link className='link' to={'/'}>
             <div className="header-logo">BlogAPP</div>
           </Link>  
           <div className="header-search">
-            <input type="text" placeholder='Search'/><i className="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder='Search post or user' value={search} onChange={(e)=>setSearch(e.target.value)} /><Link className='link' to={`/posts/search/${search}`}><i className="fa-solid fa-magnifying-glass search-btn"></i></Link>
           </div>          
         </div>
         <div className="header-right">

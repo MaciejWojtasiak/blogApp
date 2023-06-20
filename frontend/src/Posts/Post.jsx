@@ -42,10 +42,7 @@ function Post({data}) {
                     <div className="post-comment">
                         <i className="post-icon comment-icon fa-regular fa-comment"></i>
                         <span className='post-span'>Add comment</span>
-                    </div>
-                    <div className="post-category">
-                        <Link className='link' to={`posts/category/${data.category}`}>#{data.category}</Link>                        
-                    </div>
+                    </div>                    
                 </div>            
             </div>        
     </div>

@@ -35,6 +35,7 @@ router.get('/category/:category', async (req, res) => {
     }
 });
 
+
 // ADD POST
 
 router.post('/', async (req, res) => {

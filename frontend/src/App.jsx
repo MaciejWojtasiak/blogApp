@@ -7,6 +7,7 @@ import UserPage from './pages/UserPage/UserPage';
 import Register from './pages/Register/Register';
 import SinglePost from './pages/SinglePost/SinglePost';
 import CategoryPosts from './pages/CategoryPosts/CategoryPosts';
+import SearchPage from './pages/SearchPage/SearchPage';
 import Login from './pages/Login/Login';
 
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/posts/category/:category' element={<CategoryPosts />} />
             <Route path='/login' element={<Login />}/>
             <Route path='/register' element={<Register />}/>
+            <Route path='/posts/search/:query' element={<SearchPage />}/>
           </Routes>
         </div> 
       </Router>
