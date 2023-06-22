@@ -129,6 +129,32 @@ router.get('/:id/likes', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+
+// COMMENT POST
+
+router.put('/:id/comments', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const newComment = { username: req.body.username, comment: req.body.comment }
+        await post.updateOne({ $push: { comments: newComment } });
+        res.status(200).json('Post commented.');
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// GET LIKES 
+
+router.get('/:id/comments', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        res.status(200).json(post.comments);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 })
 
 

@@ -14,6 +14,14 @@ function Header() {
     window.location.reload();
   }
 
+  const handleSearch = () => {
+    window.location.replace(`search/${search}`);
+  }
+  const handleKeyDown = (e) => {
+    if(e.key=='Enter') handleSearch();
+  }
+
+
     return (
     <header className='header'>
         <div className="header-left">
@@ -21,7 +29,7 @@ function Header() {
             <div className="header-logo">BlogAPP</div>
           </Link>  
           <div className="header-search">
-            <input type="text" placeholder='Search post or user' value={search} onChange={(e)=>setSearch(e.target.value)} /><Link className='link' to={`search/${search}`}><i className="fa-solid fa-magnifying-glass search-btn"></i></Link>
+            <input type="text" placeholder='Search post or user' value={search} onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}/><i className="fa-solid fa-magnifying-glass search-btn" onClick={handleSearch} ></i>
           </div>          
         </div>
         <div className="header-right">

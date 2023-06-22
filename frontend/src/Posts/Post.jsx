@@ -1,4 +1,4 @@
-import { useState, useContext} from 'react'
+import { useState, useContext, useRef} from 'react'
 import './Post.css'
 import {  useNavigate} from 'react-router-dom'
 import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar';
@@ -8,11 +8,17 @@ import axios from 'axios';
 
 
 function Post({data}) {
+
+    console.log(data.comments)
   const {user} = useContext(Context);
   const navigate = useNavigate();
 
   const [likes, setLikes] = useState(data.likes.length);
-  const [liked, setLiked] = useState(data.likes.includes(user._id));  
+  const [liked, setLiked] = useState(data.likes.includes(user._id)); 
+  const [commentActive, setCommentActive] = useState(false); 
+
+  const commentRef = useRef();
+  
   
   const likePost = async () => {
     if(!user) return;             
@@ -28,6 +34,18 @@ function Post({data}) {
         pathname:`/posts/${data._id}`
     })
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await axios.put(`http://localhost:5000/api/posts/${data._id}/comments`, {
+        username:user.username,
+        comment: commentRef.current.value
+    });
+    setCommentActive(false);
+
+    console.log(res);
+  }
   
 
   return (
@@ -41,13 +59,21 @@ function Post({data}) {
                 <div className="post-actions">
                     <div className="post-likes">
                     <i className={`post-icon like-icon ${liked ? 'fa-solid' : 'fa-regular'} fa-heart `} onClick={likePost}></i>
-                        <span className='like-span'>{likes} Reactions</span>
+                        <span className='like-span'>{likes} {likes==1 ? 'Like' : 'Likes'}</span>
                     </div>
                     <div className="post-comment">
-                        <i className="post-icon comment-icon fa-regular fa-comment"></i>
-                        <span className='post-span'>Add comment</span>
-                    </div>                    
-                </div>            
+                        <i className="post-icon comment-icon fa-regular fa-comment" onClick={()=> setCommentActive(prevVal=>!prevVal)}></i>
+                        <span className='post-span'>{data.comments.length} Comments</span>
+                    </div>                                
+                </div>  
+                {(user && commentActive) ? 
+                <div className="add-comment">                        
+                    <form className='comment-form' onSubmit={handleSubmit}>
+                        <textarea className="form-textarea" placeholder='Add comment' ref={commentRef}></textarea>
+                        <button className="btn comment-btn">Add</button>
+                    </form>                       
+                </div> : ''}
+                                 
             </div>        
     </div>
   )
