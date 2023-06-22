@@ -1,7 +1,7 @@
 import { useState, useContext, useRef} from 'react'
 import './Post.css'
 import {  useNavigate} from 'react-router-dom'
-import AuthorAvatar from '../shared/AuthorAvatar/AuthorAvatar';
+import UserAvatar from '../shared/UserAvatar/AuthorAvatar';
 import {Context} from '../context/Context';
 import axios from 'axios';
 
@@ -9,7 +9,6 @@ import axios from 'axios';
 
 function Post({data}) {
 
-    console.log(data.comments)
   const {user} = useContext(Context);
   const navigate = useNavigate();
 
@@ -43,8 +42,6 @@ function Post({data}) {
         comment: commentRef.current.value
     });
     setCommentActive(false);
-
-    console.log(res);
   }
   
 
@@ -53,7 +50,7 @@ function Post({data}) {
         <div className="post-image">
             <img src={data.image || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
         </div>    
-        <AuthorAvatar username={data.username}/>   
+        <UserAvatar username={data.username}/>   
             <div className="post-details">               
                     <h2 className='post-title' onClick={visitPost}>{data.title}</h2>         
                 <div className="post-actions">

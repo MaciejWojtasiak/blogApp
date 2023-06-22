@@ -1,7 +1,7 @@
 import React ,{ useState, useEffect}from 'react'
 import { useParams } from 'react-router-dom';
 import './UserPage.css'
-import AuthorAvatar from '../../shared/AuthorAvatar/AuthorAvatar';
+// import UserAvatar from '../../shared/UserAvatar/UserAvatar';
 
 function UserPage() {
   const [user, setUser] = useState();
@@ -21,7 +21,7 @@ function UserPage() {
 
   return (
     <div className='user-page'>
-        <AuthorAvatar />
+        {/* <UserAvatar /> */}
     </div>
   )
 }

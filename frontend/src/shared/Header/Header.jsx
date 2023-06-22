@@ -1,8 +1,8 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
-import UserImage from '../UserImage/UserImage'
 import { useContext, useState} from 'react'
 import { Context } from '../../context/Context';
+import UserAvatar from '../UserAvatar/AuthorAvatar';
 
 
 function Header() {
@@ -36,7 +36,7 @@ function Header() {
           {user && <>
             <Link to={`/${user._id}/createPost`} className='header-button btn btn-primary link'>Create post</Link>
             <div className="header-avatar">
-              <UserImage userID={user._id} imageURL={user.imageURL}/>
+              {/* <UserImage userID={user._id} imageURL={user.imageURL}/> */}
             </div>
             <div className="logout" onClick={logout}>Logout</div>
           </>}

@@ -146,7 +146,7 @@ router.put('/:id/comments', async (req, res) => {
     }
 });
 
-// GET LIKES 
+// GET COMMENTS 
 
 router.get('/:id/comments', async (req, res) => {
     try {
