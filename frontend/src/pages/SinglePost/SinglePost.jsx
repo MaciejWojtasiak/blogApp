@@ -1,7 +1,7 @@
 import {React, useEffect, useState, useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../../shared/Loader/Loader';
-import UserAvatar from '../../shared/UserAvatar/AuthorAvatar';
+import UserAvatar from '../../shared/UserAvatar/UserAvatar';
 import UpdateForm from '../../shared/UpdateForm/UpdateForm';
 import Confirm from '../../shared/Confirm/Confirm';
 import Comments from '../../shared/Comments/Comments';
@@ -69,7 +69,7 @@ function SinglePost() {
             {post.image && <div className="post-image">
                 <img src={post.image} alt='image-item' />
             </div>}     
-            <UserAvatar imageURL='https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg' username={post.username}/>   
+            <UserAvatar username={post.username}/>   
                 <div className="post-details">                            
                         <h2 className='post-title'>{post.title}</h2>
                         <p className='post-description'>{post.description}</p>         

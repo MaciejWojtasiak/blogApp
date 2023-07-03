@@ -15,7 +15,6 @@ function CreatePost() {
   const descriptionRef = useRef();
   const categoryRef = useRef();
   const imageRef = useRef();
-
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +22,7 @@ function CreatePost() {
     const res = await axios.post('http://localhost:5000/api/posts/', {
           title: titleRef.current.value,
           description: descriptionRef.current.value,
-          username: user.username,
+          user: user._id,
           category: categoryRef.current.value,
           image: imageRef.current.value
     });

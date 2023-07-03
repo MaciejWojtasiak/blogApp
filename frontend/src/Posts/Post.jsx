@@ -1,22 +1,24 @@
-import { useState, useContext, useRef} from 'react'
+import { useState, useContext, useRef, useEffect} from 'react'
 import './Post.css'
 import {  useNavigate} from 'react-router-dom'
-import UserAvatar from '../shared/UserAvatar/AuthorAvatar';
+import UserAvatar from '../shared/UserAvatar/UserAvatar';
 import {Context} from '../context/Context';
 import axios from 'axios';
 
 
 
-function Post({data}) {
-
+function Post({data}) {    
   const {user} = useContext(Context);
   const navigate = useNavigate();
-
   const [likes, setLikes] = useState(data.likes.length);
-  const [liked, setLiked] = useState(data.likes.includes(user._id)); 
+  const [liked, setLiked] = useState(false); 
   const [commentActive, setCommentActive] = useState(false); 
 
   const commentRef = useRef();
+  
+  useEffect(()=>{
+    user && setLiked(data.likes.includes(user._id))
+   },[])
   
   
   const likePost = async () => {
@@ -42,15 +44,14 @@ function Post({data}) {
         comment: commentRef.current.value
     });
     setCommentActive(false);
-  }
-  
+  }  
 
   return (
     <div className='post' id={data._id}>
         <div className="post-image">
             <img src={data.image || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
         </div>    
-        <UserAvatar username={data.username}/>   
+        <UserAvatar userID={data.user} />   
             <div className="post-details">               
                     <h2 className='post-title' onClick={visitPost}>{data.title}</h2>         
                 <div className="post-actions">

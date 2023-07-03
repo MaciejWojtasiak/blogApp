@@ -16,10 +16,9 @@ function SearchPage() {
       const posts = res.data;
       const filteredItems = posts.filter(item=>{
         const desc = item.description.toLowerCase();
-        const username = item.username.toLowerCase();  
         const title = item.title.toLowerCase();  
 
-        return desc.includes(query.toLowerCase()) || username.includes(query.toLowerCase()) || title.includes(query.toLowerCase());        
+        return desc.includes(query.toLowerCase()) || title.includes(query.toLowerCase());        
       });
       setPosts(filteredItems);
     }
