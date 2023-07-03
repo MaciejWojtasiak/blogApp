@@ -40,7 +40,7 @@ function Post({data}) {
     e.preventDefault();
 
     const res = await axios.put(`http://localhost:5000/api/posts/${data._id}/comments`, {
-        username:user.username,
+        user:user._id,
         comment: commentRef.current.value
     });
     setCommentActive(false);

@@ -25,8 +25,8 @@ function SinglePost() {
         const getPost = async () => {
             const res = await axios.get(`http://localhost:5000/api/posts/${postID}`);
             setPost(res.data);
-            setLikes(res.data.likes.length);
-            setLiked(res.data.likes.includes(user._id));
+            setLikes(res.data.likes.length);            
+            user && setLiked(res.data.likes.includes(user._id));            
         }
         getPost();       
     },[]);
@@ -61,15 +61,15 @@ function SinglePost() {
     <div className='single-post' >
         {!post && <Loader />}
         {isUpdating && <UpdateForm post={post} close={close}/>}
-        {post.username === user.username  && <div className='edit-btn' onClick={()=> {setIsUpdating(true)}}>Edit post</div>}
-        {post.username === user.username  && <div className='delete-btn' onClick={()=> {setConfimationPopUp(true)}}>Delete post</div>}
+        {(user && post.user === user._id)  && <div className='edit-btn' onClick={()=> {setIsUpdating(true)}}>Edit post</div>}
+        {user && post.user === user._id  && <div className='delete-btn' onClick={()=> {setConfimationPopUp(true)}}>Delete post</div>}
         {confimationPopUp && <Confirm handleDelete={handleDelete} close={close}/>}
         {post && 
             <div className={`post  ${(isUpdating || confimationPopUp) && 'blur'}`} id={post._id}>
             {post.image && <div className="post-image">
                 <img src={post.image} alt='image-item' />
             </div>}     
-            <UserAvatar username={post.username}/>   
+            <UserAvatar userID={post.user} />    
                 <div className="post-details">                            
                         <h2 className='post-title'>{post.title}</h2>
                         <p className='post-description'>{post.description}</p>         

@@ -10,7 +10,6 @@ function Header() {
 
   const logout = () => {
     dispatch({type:"LOGOUT"});
-    console.log('logged out');
     window.location.reload();
   }
   

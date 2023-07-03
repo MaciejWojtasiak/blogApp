@@ -137,7 +137,7 @@ router.get('/:id/likes', async (req, res) => {
 router.put('/:id/comments', async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
-        const newComment = { username: req.body.username, comment: req.body.comment }
+        const newComment = { user: req.body.user, comment: req.body.comment }
         await post.updateOne({ $push: { comments: newComment } });
         res.status(200).json('Post commented.');
 

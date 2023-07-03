@@ -1,0 +1,13 @@
+.comment {
+    width: 90%;
+    margin: 0 auto;
+    background-color: var(--primary-white);
+    border-radius: 10px;
+    padding: .1rem;
+}
+
+.comment-description p {
+    text-align: left;
+    margin-left: 2rem;
+    margin-bottom: 10px;
+}

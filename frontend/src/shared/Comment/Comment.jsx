@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
+import UserAvatar from '../UserAvatar/UserAvatar';
+import './Comment.css'
 
-function Comment({username, description}) {
+function Comment({userID, description}) {
   return (
     <div className='comment'>
-        <div className="comment-user">
-            {username}
-        </div>
+        <UserAvatar userID={userID} />  
         <div className="comment-description">
-            {description}
+           <p>{description}</p>
         </div>
     </div>
   )
