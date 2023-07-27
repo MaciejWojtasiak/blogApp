@@ -1,13 +1,22 @@
 .comment {
+    position: relative;
     width: 90%;
     margin: 0 auto;
     background-color: var(--primary-white);
     border-radius: 10px;
     padding: .1rem;
+    margin-bottom: 10px;
 }
 
 .comment-description p {
     text-align: left;
     margin-left: 2rem;
     margin-bottom: 10px;
+}
+
+.comment .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: .2em .7em;
 }

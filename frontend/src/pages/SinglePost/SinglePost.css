@@ -1,5 +1,5 @@
 .single-post{
-    height: calc(100vh - 4rem);
+    min-height: calc(100vh - 4rem);
     text-align: center;
     display: flex;
     align-items: center;
