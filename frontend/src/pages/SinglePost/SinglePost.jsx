@@ -1,4 +1,4 @@
-import {React, useEffect, useState, useContext} from 'react'
+import {React, useEffect, useState, useContext, useRef} from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../../shared/Loader/Loader';
 import UserAvatar from '../../shared/UserAvatar/UserAvatar';
@@ -14,19 +14,23 @@ function SinglePost() {
     const {user} = useContext(Context);    
     const [isUpdating, setIsUpdating] = useState(false);
     const [confimationPopUp, setConfimationPopUp] = useState(false);
+    const [commentActive, setCommentActive] = useState(false); 
     const [post, setPost] = useState(false);    
+    const [comments, setComments] = useState([])
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false); 
 
     const params = useParams();
     const postID = params.postID;
+    const commentRef = useRef();
 
     useEffect(()=>{
         const getPost = async () => {
             const res = await axios.get(`http://localhost:5000/api/posts/${postID}`);
             setPost(res.data);
             setLikes(res.data.likes.length);            
-            user && setLiked(res.data.likes.includes(user._id));            
+            user && setLiked(res.data.likes.includes(user._id));   
+            setComments(res.data.comments);  
         }
         getPost();       
     },[]);
@@ -45,10 +49,21 @@ function SinglePost() {
         setConfimationPopUp(false);
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        await axios.put(`http://localhost:5000/api/posts/${postID}/comments`, {
+            user:user._id,
+            comment: commentRef.current.value
+        });
+        setCommentActive(false);
+        window.location.reload();
+      }  
+
     const handleDelete = async () => {
         try {
             await axios.delete(`http://localhost:5000/api/posts/${postID}`, {
-                data: {username:user.username},
+                username:user.username,
             }); 
             window.location.replace('/');
         } catch (err) {
@@ -79,12 +94,19 @@ function SinglePost() {
                         <span className='like-span'>{likes} Reactions</span>
                         </div>
                         <div className="post-comment">
-                            <i className="post-icon comment-icon fa-regular fa-comment"></i>
-                            <span className='post-span'>Add comment</span>
-                        </div>
+                            <i className="post-icon comment-icon fa-regular fa-comment"  onClick={()=> setCommentActive(prevVal=>!prevVal)}></i>
+                            <span className='post-span'>Add comment</span>                            
+                        </div>                        
                     </div>    
-                    {post.comments && <Comments comments={post.comments}/>}                         
-                </div>        
+                    {(user && commentActive) ? 
+                <div className="add-comment">                        
+                    <form className='comment-form' onSubmit={handleSubmit}>
+                        <textarea className="form-textarea" placeholder='Add comment' ref={commentRef}></textarea>
+                        <button className="btn comment-btn">Add</button>
+                    </form>                       
+                </div> : ''}                        
+                </div>   
+                {comments && <Comments postID = {post._id} comments={comments} />}           
         </div>
         }
         

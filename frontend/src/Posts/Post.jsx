@@ -12,10 +12,7 @@ function Post({data}) {
   const navigate = useNavigate();
   const [likes, setLikes] = useState(data.likes.length);
   const [liked, setLiked] = useState(false); 
-  const [commentActive, setCommentActive] = useState(false); 
 
-  const commentRef = useRef();
-  
   useEffect(()=>{
     user && setLiked(data.likes.includes(user._id))
    },[])
@@ -34,17 +31,7 @@ function Post({data}) {
     navigate({
         pathname:`/posts/${data._id}`
     })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const res = await axios.put(`http://localhost:5000/api/posts/${data._id}/comments`, {
-        user:user._id,
-        comment: commentRef.current.value
-    });
-    setCommentActive(false);
-  }  
+  } 
 
   return (
     <div className='post' id={data._id}>
@@ -60,18 +47,10 @@ function Post({data}) {
                         <span className='like-span'>{likes} {likes==1 ? 'Like' : 'Likes'}</span>
                     </div>
                     <div className="post-comment">
-                        <i className="post-icon comment-icon fa-regular fa-comment" onClick={()=> setCommentActive(prevVal=>!prevVal)}></i>
+                        <i className="post-icon comment-icon fa-regular fa-comment"></i>
                         <span className='post-span'>{data.comments.length} Comments</span>
                     </div>                                
-                </div>  
-                {(user && commentActive) ? 
-                <div className="add-comment">                        
-                    <form className='comment-form' onSubmit={handleSubmit}>
-                        <textarea className="form-textarea" placeholder='Add comment' ref={commentRef}></textarea>
-                        <button className="btn comment-btn">Add</button>
-                    </form>                       
-                </div> : ''}
-                                 
+                </div>                      
             </div>        
     </div>
   )

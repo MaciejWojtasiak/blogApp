@@ -91,3 +91,32 @@
 .blur {
    filter: blur(5px);
 }
+
+
+.add-comment{
+    width: 90%;
+}
+
+.comment-form{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+
+.form-textarea {
+    width: 100%;
+    border:none;
+}
+.comment-btn {
+    background-color: var(--primary-blue);
+    color:var(--primary-white);
+    transition: .2s;
+}
+
+.comment-btn:hover{
+ background-color: var(--secondary-blue);
+}
+
+.single-post .comment-icon {
+    cursor: pointer;
+}

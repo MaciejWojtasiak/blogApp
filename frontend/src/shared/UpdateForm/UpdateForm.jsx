@@ -17,14 +17,13 @@ function UpdateForm({post, close}) {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    try {
-        await axios.put(`http://localhost:5000/api/posts/${post._id}`, {
-            username:user.username,
+    try {   
+      await axios.put(`http://localhost:5000/api/posts/${post._id}`, {
+            user:user._id,
             title: titleRef.current.value,
             description: descriptionRef.current.value,       
             category: categoryRef.current.value,
-            image: imageRef.current.value
+            image: imageRef.current.value,
         });
         window.location.reload();
 

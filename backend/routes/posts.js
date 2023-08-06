@@ -59,26 +59,20 @@ router.post('/', async (req, res) => {
 // UPDATE POST
 
 router.put('/:id', async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        if (post.username === req.body.username) {
-            try {
-                const updatedPost = await Post.findOneAndUpdate(
-                    { _id: req.params.id },
-                    {
-                        $set: req.body
-                    },
-                    { new: true }
-                );
-                res.status(200).json(updatedPost);
+    const post = await Post.findById(req.params.id);
+    if (post.user === req.body.user) {
+        try {
+            const updatedPost = await Post.findOneAndUpdate(
+                { _id: req.params.id },
+                {
+                    $set: req.body
+                }
+            );
+            res.status(200).json(updatedPost);
 
-            } catch (err) {
-                res.status(500).json(err);
-            }
+        } catch (err) {
+            res.status(500).json(err);
         }
-
-    } catch (err) {
-        res.status(500).json(err);
     }
 })
 
@@ -140,7 +134,6 @@ router.put('/:id/comments', async (req, res) => {
         const newComment = { user: req.body.user, comment: req.body.comment }
         await post.updateOne({ $push: { comments: newComment } });
         res.status(200).json('Post commented.');
-
     } catch (err) {
         res.status(500).json(err);
     }
@@ -155,7 +148,6 @@ router.get('/:id/comments', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
-
+});
 
 module.exports = router;
