@@ -70,7 +70,6 @@ function SinglePost() {
             console.log(err);
         }           
     }
-    console.log(post)
    
   return (
     <div className='single-post' >
