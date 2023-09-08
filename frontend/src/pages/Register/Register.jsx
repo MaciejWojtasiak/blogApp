@@ -26,7 +26,7 @@ function Register() {
         email:emailRef.current.value,
         password:passwordRef.current.value
       })
-      res && window.location.replace('/login');
+      res && location.replace('/');
     } catch (err) {
       console.log(err);
     }

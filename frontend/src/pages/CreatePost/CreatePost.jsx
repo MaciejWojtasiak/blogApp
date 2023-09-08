@@ -27,7 +27,7 @@ function CreatePost() {
           image: postImage.myFile
     });
 
-    res.data && window.location.replace('/');
+    res.data && location.replace('/');
   }
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
