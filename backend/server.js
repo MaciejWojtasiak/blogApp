@@ -11,7 +11,7 @@ app.use(express.urlencoded({ limit: '50mb' }));
 
 dotenv.config();
 app.use(express.json())
-app.use(cors({ origin: "http://localhost:5173" }))
+app.use(cors())
 
 mongoose.connect(process.env.MONGO_URL).then(console.log('Connected to MongoDB'));
 
