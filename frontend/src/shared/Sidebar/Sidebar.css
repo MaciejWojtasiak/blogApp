@@ -21,3 +21,9 @@
 .list-item:hover {
     color: var(--primary-blue);
 }
+
+@media (max-width:600px) {
+    .sidebar {
+        display: none;
+    }
+}

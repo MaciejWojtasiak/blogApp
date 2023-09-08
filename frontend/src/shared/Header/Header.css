@@ -70,3 +70,11 @@
     cursor: pointer;
 }
 
+@media (max-width:600px) {
+    .header-search {
+        display: none;
+    }
+    .header-button {
+        font-size: .6rem;
+    }
+}

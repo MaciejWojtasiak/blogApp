@@ -40,3 +40,9 @@
 ::-webkit-scrollbar-thumb {
     background-color: rgb(179,179,179);
 }
+
+@media (max-width:600px) {
+   .App{
+    font-size: 12px;
+   }
+}
