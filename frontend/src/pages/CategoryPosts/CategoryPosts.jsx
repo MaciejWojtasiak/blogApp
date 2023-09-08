@@ -14,7 +14,7 @@ function CategoryPosts() {
   useEffect(()=>{
     setIsLoading(true);    
     const getPosts = async () => { 
-      const res = await axios.get(`http://localhost:5000/api/posts/category/${category}`);
+      const res = await axios.get(`https://blog-app-api-hpab.onrender.com/api/posts/category/${category}`);
       setcategoryPosts(res.data);
     }
     getPosts();   

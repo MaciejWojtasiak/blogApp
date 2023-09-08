@@ -7,7 +7,7 @@ import { Context } from '../../context/Context';
 function Login() {
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const {isFetching, dispatch} = useContext(Context);
+  const {dispatch} = useContext(Context);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     dispatch({type:"LOGIN_START"})
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post('https://blog-app-api-hpab.onrender.com/api/auth/login', {
         username: usernameRef.current.value,
         password: passwordRef.current.value
       });    

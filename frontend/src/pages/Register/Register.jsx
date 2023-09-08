@@ -2,11 +2,6 @@ import {React, useRef, useState} from 'react';
 import axios from 'axios';
 import './Register.css'
 
-
-
-
-
-
 function Register() {
 
   const usernameRef = useRef();
@@ -14,9 +9,7 @@ function Register() {
   const passwordRef = useRef();
   const repeatRef = useRef();
 
-  const [message, setMessage] = useState('');
-
-  
+  const [message, setMessage] = useState('');  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +21,7 @@ function Register() {
     }
    
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', {
+      const res = await axios.post('https://blog-app-api-hpab.onrender.com/api/auth/register', {
         username:usernameRef.current.value,
         email:emailRef.current.value,
         password:passwordRef.current.value

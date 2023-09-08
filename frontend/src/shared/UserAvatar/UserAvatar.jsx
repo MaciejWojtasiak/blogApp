@@ -10,7 +10,7 @@ function UserAvatar({userID}) {
 
   useEffect(()=>{
     const getUser = async () => {
-      const res = await axios.get(`http://localhost:5000/api/users/${userID}`);
+      const res = await axios.get(`https://blog-app-api-hpab.onrender.com/api/users/${userID}`);
       setUser(res.data);
     } 
     getUser();     

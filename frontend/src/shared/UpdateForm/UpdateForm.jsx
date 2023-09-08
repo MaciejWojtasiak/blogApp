@@ -18,7 +18,7 @@ function UpdateForm({post, close}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {   
-      await axios.put(`http://localhost:5000/api/posts/${post._id}`, {
+      await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${post._id}`, {
             user:user._id,
             title: titleRef.current.value,
             description: descriptionRef.current.value,       

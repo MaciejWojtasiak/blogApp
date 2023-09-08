@@ -12,7 +12,7 @@ function SearchPage() {
 
   useEffect(()=>{
     const getPosts = async () => {
-      const res = await axios.get('http://localhost:5000/api/posts');
+      const res = await axios.get('https://blog-app-api-hpab.onrender.com/api/posts');
       const posts = res.data;
       const filteredItems = posts.filter(item=>{
         const desc = item.description.toLowerCase();

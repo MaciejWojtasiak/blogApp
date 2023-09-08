@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useEffect} from 'react'
+import { useState, useContext, useEffect} from 'react'
 import './Post.css'
 import {  useNavigate} from 'react-router-dom'
 import UserAvatar from '../shared/UserAvatar/UserAvatar';
@@ -20,7 +20,7 @@ function Post({data}) {
   
   const likePost = async () => {
     if(!user) return;             
-    await axios.put(`http://localhost:5000/api/posts/${data._id}/like`, {
+    await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${data._id}/like`, {
         userId:user._id
     });     
     setLiked(prevVal => !prevVal);

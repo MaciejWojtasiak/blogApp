@@ -26,7 +26,7 @@ function SinglePost() {
 
     useEffect(()=>{
         const getPost = async () => {
-            const res = await axios.get(`http://localhost:5000/api/posts/${postID}`);
+            const res = await axios.get(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}`);
             setPost(res.data);
             setLikes(res.data.likes.length);            
             user && setLiked(res.data.likes.includes(user._id));   
@@ -37,7 +37,7 @@ function SinglePost() {
 
     const likePost = async () => {
         if(!user) return;             
-        await axios.put(`http://localhost:5000/api/posts/${postID}/like`, {
+        await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}/like`, {
             userId:user._id
         });     
         setLiked(prevVal => !prevVal);
@@ -52,7 +52,7 @@ function SinglePost() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        await axios.put(`http://localhost:5000/api/posts/${postID}/comments`, {
+        await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}/comments`, {
             user:user._id,
             comment: commentRef.current.value
         });
@@ -62,7 +62,7 @@ function SinglePost() {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:5000/api/posts/${postID}`, {
+            await axios.delete(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}`, {
                 username:user.username,
             }); 
             window.location.replace('/');

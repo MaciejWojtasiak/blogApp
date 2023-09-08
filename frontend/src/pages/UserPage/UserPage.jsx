@@ -12,8 +12,8 @@ function UserPage() {
   useEffect(()=>{
     const getData = async () => {
       try{
-        const resUser = await axios.get(`http://localhost:5000/api/users/${userID}`);
-        const resPosts = await axios.get('http://localhost:5000/api/posts');
+        const resUser = await axios.get(`https://blog-app-api-hpab.onrender.com/api/users/${userID}`);
+        const resPosts = await axios.get('https://blog-app-api-hpab.onrender.com/api/posts');
         const postsData = resPosts.data;
         const userPosts = postsData.filter(item => item.user === userID)
         setUser(resUser.data);      

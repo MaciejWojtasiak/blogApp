@@ -19,7 +19,7 @@ function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const res = await axios.post('http://localhost:5000/api/posts/', {
+    const res = await axios.post('https://blog-app-api-hpab.onrender.com/api/posts/', {
           title: titleRef.current.value,
           description: descriptionRef.current.value,
           user: user._id,
