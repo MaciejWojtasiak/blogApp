@@ -50,7 +50,7 @@ function CreatePost() {
                 return <option key={index} value={category}>{category.toUpperCase()}</option>
               })}
           </select>
-          <label htmlFor="image-input">Image URL</label>
+          <label htmlFor="image-input">Image</label>
           <input className='form-input' type="file" id='image-input' name='image-input' accept='.jpeg, .png, .jpg' onChange={(e)=>{handleFileUpload(e)}}/> 
           <input type="submit" className='btn btn-primary' value="Submit" />
         </div>

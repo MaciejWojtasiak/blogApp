@@ -1,4 +1,4 @@
-import {React, useRef, useContext} from 'react';
+import {React, useRef, useContext, useState} from 'react';
 import axios from 'axios';
 import './UpdateForm.css';
 import {Context} from '../../context/Context';
@@ -13,7 +13,7 @@ function UpdateForm({post, close}) {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
-  const imageRef = useRef();
+  const [postImage, setPostImage] = useState({myFile:''});
  
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,14 +23,19 @@ function UpdateForm({post, close}) {
             title: titleRef.current.value,
             description: descriptionRef.current.value,       
             category: categoryRef.current.value,
-            image: imageRef.current.value,
+            image: postImage.myFile,
         });
         window.location.reload();
 
     } catch (err) {
         console.log(err)
     }
+  }
 
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setPostImage({...postImage, myFile: base64})
   }
   
   return (
@@ -49,8 +54,8 @@ function UpdateForm({post, close}) {
                 return <option key={index} value={category}>{category.toUpperCase()}</option>
               })}
           </select>
-          <label htmlFor="image-input">Image URL</label>
-          <input ref={imageRef} className='form-input' type="text" id='image-input' name='image-input' placeholder='Image URL...'  defaultValue={post.image}/> 
+          <label htmlFor="image-input">Image</label>
+          <input className='form-input' type="file" id='image-input' name='image-input' accept='.jpeg, .png, .jpg' onChange={(e)=>{handleFileUpload(e)}}/> 
           <input type="submit" className='btn btn-primary' value="Submit" />
         </div>
       </form>
@@ -59,3 +64,16 @@ function UpdateForm({post, close}) {
 }
 
 export default UpdateForm
+
+function convertToBase64(file){
+  return new Promise((resolve,reject)=>{
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    }
+    fileReader.onerror = (error) => {
+      reject(error);
+    }
+  })
+}
