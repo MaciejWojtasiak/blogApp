@@ -35,7 +35,7 @@ function Post({data}) {
 
   return (
     <div className='post' id={data._id}>
-        <div className="post-image">
+        <div className="post-image" onClick={visitPost}>
             <img src={data.image || 'https://cdn.pixabay.com/photo/2020/06/25/22/11/cat-5341054_960_720.jpg'} alt='image-item' />
         </div>    
         <UserAvatar userID={data.user} />   
