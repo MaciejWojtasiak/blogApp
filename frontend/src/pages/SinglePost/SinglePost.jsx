@@ -57,7 +57,7 @@ function SinglePost() {
             comment: commentRef.current.value
         });
         setCommentActive(false);
-        window.location.reload();
+        location.reload();
       }  
 
     const handleDelete = async () => {
@@ -65,7 +65,7 @@ function SinglePost() {
             await axios.delete(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}`, {
                 username:user.username,
             }); 
-            window.location.replace('/');
+            location.replace('/');
         } catch (err) {
             console.log(err);
         }           
