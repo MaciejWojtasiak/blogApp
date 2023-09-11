@@ -31,7 +31,7 @@ function Header() {
             <div className="header-logo">BlogAPP</div>
           </Link>  
           <div className="header-search">
-            <input type="text" placeholder='Search post or user' value={search} onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}/><i className="fa-solid fa-magnifying-glass search-btn" onClick={handleSearch} ></i>
+            <input type="text" placeholder='Search post' value={search} onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}/><i className="fa-solid fa-magnifying-glass search-btn" onClick={handleSearch} ></i>
           </div>          
         </div>
         <div className="header-right">

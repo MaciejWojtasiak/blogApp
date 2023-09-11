@@ -5,8 +5,6 @@ import UserAvatar from '../shared/UserAvatar/UserAvatar';
 import {Context} from '../context/Context';
 import axios from 'axios';
 
-
-
 function Post({data}) {    
   const {user} = useContext(Context);
   const navigate = useNavigate();
