@@ -2,6 +2,7 @@ import './Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState} from 'react'
 import { Context } from '../../context/Context';
+import { toast } from 'react-toastify';
 
 function Header() {
   const navigate = useNavigate();
@@ -10,7 +11,8 @@ function Header() {
 
   const logout = () => {
     dispatch({type:"LOGOUT"});
-    window.location.reload();
+    toast.success('User logged out.');
+    location.reload();
   }
   
 

@@ -1,4 +1,4 @@
-import {React, useEffect, useState, useContext, useRef} from 'react'
+import { useEffect, useState, useContext, useRef} from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../../shared/Loader/Loader';
 import UserAvatar from '../../shared/UserAvatar/UserAvatar';

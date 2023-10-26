@@ -1,4 +1,6 @@
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 import Header from './shared/Header/Header';
 import CreatePost from './pages/CreatePost/CreatePost';
@@ -9,9 +11,6 @@ import SinglePost from './pages/SinglePost/SinglePost';
 import CategoryPosts from './pages/CategoryPosts/CategoryPosts';
 import SearchPage from './pages/SearchPage/SearchPage';
 import Login from './pages/Login/Login';
-
-
-
 
 function App() {   
   return (  
@@ -28,6 +27,7 @@ function App() {
             <Route path='/register' element={<Register />}/>
             <Route path='/search/:query' element={<SearchPage />}/>
           </Routes>
+          <ToastContainer />
         </div> 
       </Router>
   )

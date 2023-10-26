@@ -1,16 +1,16 @@
-import {React, useRef, useContext, useState} from 'react';
+import { useRef, useContext, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreatePost.css';
 import {Context} from '../../context/Context';
-
-
+import { toast } from 'react-toastify';
 
 const categories = ["music", 'sport', 'technology', 'science', 'movie', 'politics'];
 
 function CreatePost() {
-
   const {user} = useContext(Context);
-  
+  const navigate = useNavigate();
+
   const titleRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
@@ -18,7 +18,11 @@ function CreatePost() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    if(titleRef.current.value === '' || descriptionRef.current.value === '' || postImage.myFile ==='') {
+      toast.err('Please fill the inputs of the form.')
+    }
+    
     const res = await axios.post('https://blog-app-api-hpab.onrender.com/api/posts/', {
           title: titleRef.current.value,
           description: descriptionRef.current.value,
@@ -26,9 +30,10 @@ function CreatePost() {
           category: categoryRef.current.value,
           image: postImage.myFile
     });
-
-    res.data && location.replace('/');
+    res.data && navigate('/');
+    toast.success('Post created successfully.')
   }
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);

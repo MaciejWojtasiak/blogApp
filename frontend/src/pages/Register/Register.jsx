@@ -1,9 +1,12 @@
-import {React, useRef, useState} from 'react';
+import { useRef, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify'
 import axios from 'axios';
 import './Register.css'
 
-function Register() {
 
+function Register() {
+  const navigate = useNavigate();
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -25,10 +28,11 @@ function Register() {
         username:usernameRef.current.value,
         email:emailRef.current.value,
         password:passwordRef.current.value
-      })
-      res && location.replace('/');
+      });
+      toast.success('User registered.')
+      res && navigate('/');
     } catch (err) {
-      console.log(err);
+      toast.error(`${err}`)
     }
   }
 
@@ -46,7 +50,7 @@ function Register() {
               <label htmlFor="password-check">Repeat password</label>
               <input ref={repeatRef} className='form-input' name='password-check' id='password-check' type="password" placeholder='Repeat password' />
               {message && <div className='password-message'>{message}</div>}
-              <input className='btn btn-primary' type="submit" placeholder='Register'/>
+              <button className='btn btn-primary' type="submit">Register</button>
             </div>
         </form>
       
@@ -54,4 +58,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Register;
