@@ -14,3 +14,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.lds-ring{
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

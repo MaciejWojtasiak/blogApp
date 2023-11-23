@@ -4,6 +4,7 @@ import {  useNavigate} from 'react-router-dom'
 import UserAvatar from '../shared/UserAvatar/UserAvatar';
 import {Context} from '../context/Context';
 import axios from 'axios';
+import {toast} from 'react-toastify';
 
 function Post({data}) {    
   const {user} = useContext(Context);
@@ -17,7 +18,7 @@ function Post({data}) {
   
   
   const likePost = async () => {
-    if(!user) return;             
+    if(!user) toast.error('Only logged users can like posts.');             
     await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${data._id}/like`, {
         userId:user._id
     });     
