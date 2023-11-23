@@ -18,12 +18,15 @@ function Post({data}) {
   
   
   const likePost = async () => {
-    if(!user) toast.error('Only logged users can like posts.');             
-    await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${data._id}/like`, {
+    if(!user) toast.error('Only logged users can like posts.');    
+    else {
+      await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${data._id}/like`, {
         userId:user._id
-    });     
-    setLiked(prevVal => !prevVal);
-    liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);   
+      });     
+      setLiked(prevVal => !prevVal);
+      liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);
+    }          
+      
   }
 
   const visitPost = () => {

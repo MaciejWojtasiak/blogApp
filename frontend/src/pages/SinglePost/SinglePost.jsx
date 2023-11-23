@@ -8,6 +8,7 @@ import Comments from '../../shared/Comments/Comments';
 import './SinglePost.css';
 import axios from 'axios';
 import { Context } from '../../context/Context';
+import {toast} from 'react-toastify';
 
 function SinglePost() {
 
@@ -36,12 +37,14 @@ function SinglePost() {
     },[]);
 
     const likePost = async () => {
-        if(!user) return;             
-        await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}/like`, {
-            userId:user._id
-        });     
-        setLiked(prevVal => !prevVal);
-        liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);   
+        if(!user) toast.error('Only logged users can like posts.') ;     
+        else {
+            await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}/like`, {
+                userId:user._id
+            });
+            setLiked(prevVal => !prevVal);
+            liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal); 
+        }                    
       }
 
     const close = () => {
@@ -50,8 +53,7 @@ function SinglePost() {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-    
+        e.preventDefault();      
         await axios.put(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}/comments`, {
             user:user._id,
             comment: commentRef.current.value
