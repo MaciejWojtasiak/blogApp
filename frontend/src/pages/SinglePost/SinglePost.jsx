@@ -11,7 +11,6 @@ import { Context } from '../../context/Context';
 import {toast} from 'react-toastify';
 
 function SinglePost() {
-
     const {user} = useContext(Context);    
     const [isUpdating, setIsUpdating] = useState(false);
     const [confimationPopUp, setConfimationPopUp] = useState(false);
@@ -34,7 +33,7 @@ function SinglePost() {
             setComments(res.data.comments);  
         }
         getPost();       
-    },[]);
+    },[postID,user]);
 
     const likePost = async () => {
         if(!user) toast.error('Only logged users can like posts.') ;     
@@ -67,6 +66,7 @@ function SinglePost() {
             await axios.delete(`https://blog-app-api-hpab.onrender.com/api/posts/${postID}`, {
                 username:user.username,
             }); 
+            toast.success('Post removed.')
             location.replace('/');
         } catch (err) {
             console.log(err);

@@ -21,8 +21,7 @@ function Home() {
   },[])
   return (
     <div className='home'>
-      {isLoading? <Loader /> : <PostList posts={posts}/>}
-      
+      {isLoading? <Loader /> : <PostList posts={posts}/>}      
       <Sidebar />         
     </div>
   )

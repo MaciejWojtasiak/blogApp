@@ -14,8 +14,7 @@ function Post({data}) {
 
   useEffect(()=>{
     user && setLiked(data.likes.includes(user._id))
-   },[])
-  
+   },[]);  
   
   const likePost = async () => {
     if(!user) toast.error('Only logged users can like posts.');    
@@ -25,8 +24,7 @@ function Post({data}) {
       });     
       setLiked(prevVal => !prevVal);
       liked ? setLikes(prevVal => --prevVal) : setLikes(prevVal => ++prevVal);
-    }          
-      
+    }                
   }
 
   const visitPost = () => {
